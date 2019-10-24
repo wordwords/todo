@@ -15,11 +15,12 @@ export default class ToDo extends Component {
 
     return (
       // TouchableOpacity: 터치 이벤트(onPress 등)를 사용할 수 있는 View
+      // 한개를 패스하는 대신 array를 패스할 것.
       <View style={styles.container}>
         <TouchableOpacity onPress={this._toggleComplete}>
           <View style={[styles.circle, isCompleted ? styles.completedCircle : styles.uncompletedCircle]} />
         </TouchableOpacity>
-        <Text style={styles.text}> 투두 </Text>
+        <Text style={(styles.text, isCompleted ? styles.completedText : styles.uncompletedText)}> 투두 </Text>
       </View>
     )
   }
@@ -61,10 +62,17 @@ const styles = StyleSheet.create({
   },
 
   completedCircle: {
-    borderColor: "#bbb"
+    borderColor: "#bbb",
   },
 
   uncompletedCircle: {
-    borderColor: "#F23657"
-  }
+    borderColor: "#F23657",
+  },
+
+  completedText: {
+    color: "#bbb", // 완료: 회색으로 바뀐다.
+    textDecorationLine: "line-through", // 완료: 밑줄이 그어진다.
+  },
+
+  uncompletedText: {},
 })
